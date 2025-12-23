@@ -97,7 +97,8 @@ function BookingForm() {
   };
 
   const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
+    // Safari-compatible date parsing: replace hyphen with slash or use ISO format
+    const date = new Date(dateStr.replace(/-/g, '/'));
     return date.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',

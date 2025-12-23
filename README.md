@@ -2,6 +2,8 @@
 
 A full-stack booking system for the Toronto Auto Show 2026, built with Node.js, Express, TypeScript, React, and SQLite.
 
+**✅ Fully Safari Compatible** - Optimized for Safari desktop and iOS with proper webkit prefixes, date handling, and touch interactions. See [SAFARI_COMPATIBILITY.md](./SAFARI_COMPATIBILITY.md) for details.
+
 ## Features
 
 - 🎫 **Multiple Ticket Types**: General Admission, VIP Pass, Family Pack, Student/Senior
@@ -266,6 +268,20 @@ curl -X POST http://localhost:3000/api/bookings \
 curl http://localhost:3000/api/bookings/email/john@example.com
 ```
 
+## Browser Compatibility
+
+This application is fully compatible with:
+- ✅ **Safari** (desktop and iOS) - See [SAFARI_COMPATIBILITY.md](./SAFARI_COMPATIBILITY.md)
+- ✅ Chrome/Edge (Chromium-based browsers)
+- ✅ Firefox
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile, Firefox Mobile)
+
+### Safari-Specific Features:
+- Webkit-prefixed CSS for gradients, transforms, and transitions
+- Safari-compatible date parsing
+- iOS touch optimizations
+- Proper input styling for iOS devices
+
 ## Troubleshooting
 
 **Port already in use:**
@@ -278,6 +294,10 @@ curl http://localhost:3000/api/bookings/email/john@example.com
 **Frontend not connecting to backend:**
 - Ensure backend is running on port 3000
 - Check Vite proxy configuration in `client/vite.config.ts`
+
+**Dates not displaying correctly in Safari:**
+- The app uses Safari-compatible date parsing (see SAFARI_COMPATIBILITY.md)
+- If issues persist, check browser console for errors
 
 ## License
 
