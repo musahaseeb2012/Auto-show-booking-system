@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import db, { initializeDatabase } from './database';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateBookingRequest, BookingDetails } from './types';
@@ -13,6 +14,10 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the React app in production
+const clientBuildPath = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientBuildPath));
 
 // Initialize database
 initializeDatabase();
@@ -222,6 +227,11 @@ app.get('/api/stats', (req, res) => {
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Toronto Auto Show 2026 Booking System' });
+});
+
+// Serve React app for all other routes (must be after API routes)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
